@@ -22,7 +22,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item">Cuenta: </a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Salir</a></li>
+              <li><a class="dropdown-item" href="/pagina-productos/includes/salir.php">Salir</a></li>
             </ul>
           </li>
         </ul>

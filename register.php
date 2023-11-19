@@ -6,10 +6,26 @@
     <title>Tienda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
-  <body class="bg-secondary-subtle">
+  <body class="bg-primary-subtle">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <form class="border p-3 bg-white" style="width: 18rem;">
+        <form action="modulos/usuarios/registrarse.php" method="post" class="border p-3 bg-white" style="width: 18rem;">
             <h2 class="text-center">Tienda.</h2>
+            <?php
+            // En el formulario de inicio de sesión (index.php)
+            session_start();
+
+            // Verificar si hay un mensaje almacenado en la variable de sesión
+            if (isset($_SESSION['mensaje'])) {
+                $mensaje = $_SESSION['mensaje'];
+                // Eliminar el mensaje de la variable de sesión para que no se muestre nuevamente
+                unset($_SESSION['mensaje']);
+            }
+            ?>
+            <?php if (isset($mensaje)) : ?>
+                <div class="alert alert-dark" role="alert">
+                    <?php echo $mensaje; ?>
+                </div>
+            <?php endif; ?>
             <div class="mb-3">
                 <label for="nombre-completo" class="form-label">Nombre completo</label>
                 <input type="text" class="form-control" name="nombre-completo" aria-describedby="emailHelp">
