@@ -64,8 +64,9 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <a type="button" href="/pagina-productos/modulos/carrito/vaciarCarrito.php" class="btn btn-primary">Vaciar</a>
+        <a type="button" href="/pagina-productos/modulos/pedidos/index.php" class="btn btn-success">Continuar pedido</a>
       </div>
     </div>
   </div>

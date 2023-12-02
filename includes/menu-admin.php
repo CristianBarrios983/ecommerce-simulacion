@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">  
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Tienda</a>
@@ -20,9 +23,9 @@
                 <i class="bi bi-person-circle fs-5" style="color: antiquewhite;"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item">Cuenta: </a></li>
+              <li><a class="dropdown-item">Cuenta: <span class="badge text-bg-warning"><?php echo $_SESSION['admin']; ?></span></a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/pagina-productos/includes/salir.php">Salir</a></li>
+              <li><a class="dropdown-item" href="/pagina-productos/includes/salir-admin.php">Salir</a></li>
             </ul>
           </li>
         </ul>
