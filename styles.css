@@ -10,3 +10,10 @@
 .img-hover > img:hover{
     transform: scale(1.2);
 }
+
+.card-description {
+    max-height: 100px; /* Establecer la altura máxima deseada */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

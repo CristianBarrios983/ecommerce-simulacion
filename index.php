@@ -15,6 +15,8 @@
   <?php 
     session_start();
     include('includes/menu.php'); 
+    include('modulos/carrito/modal-cart.php');
+    include('includes/carousel.php');
   ?>
 
    <main class="container">
@@ -35,17 +37,24 @@
         <?php
             while($row = mysqli_fetch_assoc($result)):
         ?>
-        <div class="card rounded-0" style="width: 18rem;">
-          <div class="img-hover">
-            <img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']) ?>" class="card-img-top" alt="...">
+        <form id="formulario" action="modulos/carrito//cart.php" method="post" style="width: 18rem;">
+          <!-- Datos que se envian en forma oculta -->
+          <input type="hidden" value="<?php echo $row['nombre']; ?>"  name="producto">
+          <input type="hidden" value="<?php echo $row['descripcion']; ?>" name="descripcion">
+          <input type="hidden" value="<?php echo $row['precio']; ?>" name="precio">
+          <input type="hidden" value="1" name="cantidad">
+          <div class="card rounded-0">
+            <div class="img-hover">
+              <img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']) ?>" class="card-img-top rounded-0" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $row['nombre']; ?></h5>
+              <p class="card-text card-description"><?php echo $row['descripcion']; ?></p>
+              <p class="card-text text-success fw-semibold fs-3"><?php echo "$".$row['precio']; ?></p>
+              <input type="submit" class="btn btn-primary d-block rounded-0 w-100" value="Añadir">
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $row['nombre'];  ?></h5>
-            <p class="card-text"><?php echo $row['descripcion'];  ?></p>
-            <p class="card-text text-success fw-semibold fs-3"><?php echo $row['precio'];  ?></p>
-            <a href="#" class="btn btn-primary d-block rounded-0">Añadir</a>
-          </div>
-        </div>
+        </form>
 
         <?php endwhile; ?>
 

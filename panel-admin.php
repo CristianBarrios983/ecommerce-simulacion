@@ -21,7 +21,18 @@
                 <div class="card-header">Usuarios</div>
                 <div class="card-body">
                     <h5 class="card-title">Usuarios registrados</h5>
-                    <p class="card-text">0</p>
+                    <?php 
+                            require('includes/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS totalUsuarios FROM usuarios";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $totalUsuarios = $row['totalUsuarios'];
+                        ?>
+                    <p class="card-text"><?php echo $totalUsuarios; ?></p>
                 </div>
                 </div>
             </div>
@@ -31,7 +42,18 @@
                 <div class="card-header">Productos</div>
                 <div class="card-body">
                     <h5 class="card-title">Productos registrados</h5>
-                    <p class="card-text">0</p>
+                    <?php 
+                            require('includes/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS totalProductos FROM productos";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $totalProductos = $row['totalProductos'];
+                        ?>
+                    <p class="card-text"><?php echo $totalProductos ?></p>
                 </div>
                 </div>
             </div>

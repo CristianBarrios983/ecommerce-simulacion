@@ -1,3 +1,18 @@
+<?php
+    // Iniciar carrito
+    if (isset($_SESSION['carrito'])) {
+        $mi_carrito = $_SESSION['carrito'];
+    }
+
+    // Contabilizamos productos únicos en nuestro carrito
+    $total_productos_unicos = 0;
+    if (isset($mi_carrito) && is_array($mi_carrito)) {
+        $productos_unicos = array_unique(array_column($mi_carrito, 'producto'));
+        $total_productos_unicos = count($productos_unicos);
+}
+
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">  
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Tienda</a>
@@ -19,8 +34,6 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
                 <?php
@@ -58,7 +71,7 @@
             
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <i class="bi bi-bag fs-5" style="color: antiquewhite;"></i>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#cartModal" class="text-decoration-none text-white"><i class="bi bi-bag fs-5 me-1" style="color: antiquewhite;"></i><?php echo $total_productos_unicos; ?></a>
                 </li>
             </ul>
         </div>
