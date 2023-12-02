@@ -1,3 +1,10 @@
+<?php
+    // Verificar si se ha enviado el formulario de búsqueda
+    if (isset($_GET['busqueda'])) {
+        // Obtener el valor del campo de búsqueda y almacenarla en una variable
+        $busqueda = $_GET['busqueda'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,28 +19,38 @@
 </head>
 <body>
 
-  <?php 
-    session_start();
-    include('includes/menu.php'); 
-    include('modulos/carrito/modal-cart.php');
-    include('includes/carousel.php');
-  ?>
+    <?php 
+        session_start();
+        include('../../includes/menu.php'); 
+        include('../../modulos/carrito/modal-cart.php');
+        include('../../includes/carousel.php');
+    ?>
 
-   <main class="container">
-    <h2 class="text-center mb-5 mt-5">Mejores productos</h2>
-      <div class="row justify-content-center gap-3 mb-5">
+    <main class="container">
+        <?php
+            // Conexion a la base de datos
+            require('../../includes/conexion.php');
 
-      <?php
-            //Conexion a la base de datos
-            require('includes/conexion.php');
-
-            //Consulta para obtener los datos de las personas
-            $query = "SELECT * FROM productos";
+            // Consulta para obtener los datos de las personas
+            $query = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, productos.categoria AS id_categoria, categorias.categoria 
+            FROM productos
+            JOIN categorias ON productos.categoria = categorias.id
+            WHERE productos.nombre LIKE '%$busqueda%'
+            OR productos.descripcion LIKE '%$busqueda%'
+            OR categorias.categoria LIKE '%$busqueda%';
+            ";
             $result = mysqli_query($conn, $query);
 
-            if(mysqli_num_rows($result) > 0){
+            if (!$result) {
+                die("Error en la consulta: " . mysqli_error($conn));
+            }
+
+            if (mysqli_num_rows($result) > 0) {
+                $cantidad = mysqli_num_rows($result);
         ?>
-        
+    <h2 class="text-center mb-5 mt-5">Resultados (<?php echo $cantidad; ?>)</h2>
+      <div class="row justify-content-center gap-3 mb-5">
+
         <?php
             while($row = mysqli_fetch_assoc($result)):
         ?>
@@ -61,22 +78,17 @@
         <?php
             } else {
                 // No hay registros, mostrar el mensaje
-                echo '<p class="text-center fs-4">No hay registros.</p>';
+                echo '<p class="text-center fs-4 mt-4">No hay registros.</p>';
             }
-        
-        // Cerrar la conexión a la base de datos
-        mysqli_close($conn);
         ?>
 
-      </div>
-   </main>
-
-   <?php
-      include('includes/categorias.php');
-   ?>
-
-
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
    
 </body>
 </html>
+
+<?php
+        // Cerrar la conexión a la base de datos
+        mysqli_close($conn);
+    }
+?>

@@ -44,17 +44,15 @@
                       <i class="bi bi-person-circle fs-5" style="color: antiquewhite;"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Usuario: <span class="badge text-bg-info"><?php echo $_SESSION['email']; ?></span></a></li>
+                        <li><a class="dropdown-item" href="#">Cuenta: <span class="badge text-bg-info"><?php echo $_SESSION['email']; ?></span></a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/pagina-productos/includes/salir.php">Salir</a></li>
                     </ul>
                 <?php 
                     }else{
                 ?>
-                    <ul>
+                    <ul class="d-flex gap-2 list-unstyled">
                         <li><a href="/pagina-productos/login.php" class="btn btn-danger rounded-0">Ingrese</a></li>
-                    </ul>
-                    <ul>
                         <li><a href="/pagina-productos/register.php" class="btn btn-primary rounded-0">Registrese</a></li>
                     </ul>
                 <?php
@@ -62,8 +60,8 @@
                 ?>
                 </li>
             </ul>
-            <form class="d-flex me-3" role="search">
-                <input class="form-control rounded-0" type="search" placeholder="Buscar..." aria-label="Search">
+            <form class="d-flex me-3" action="/pagina-productos/modulos/busqueda/busqueda-producto.php" method="get" role="search">
+                <input class="form-control rounded-0" name="busqueda" id="busqueda" type="search" placeholder="Buscar..." aria-label="Search" required>
                 <button class="btn btn-outline-success rounded-0" type="submit">
                     <i class="bi bi-search"></i>
                 </button>

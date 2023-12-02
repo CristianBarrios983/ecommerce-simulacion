@@ -1,8 +1,8 @@
 <?php
     session_start();
 
-    //Destruye la sesion
-    session_destroy();
+    //Destruye la session de admin
+    unset($_SESSION['admin']);
 
     header("Location: ../login-admin.php");
     exit();

@@ -1,5 +1,9 @@
 <?php
-  session_start();
+    // Inicia sesión para acceder a la variable $_SESSION
+    session_start();
+
+    // Verificar si el usuario ha iniciado sesión como admin
+    if (isset($_SESSION['admin'])) {
 ?>
 <!doctype html>
 <html lang="en">
@@ -98,3 +102,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php 
+    }else{
+        // El usuario admin no ha iniciado sesión, redirigir a una página de inicio de sesión
+        header("Location: /pagina-productos/login-admin.php");
+        exit();
+    }
+?>
