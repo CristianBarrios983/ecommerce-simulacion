@@ -77,7 +77,7 @@
                             <td><?php echo $row['nombre'];  ?></td>
                             <td><?php echo $row['descripcion'];  ?></td>
                             <td><?php echo $row['precio'];  ?></td>
-                            <td><img style="max-height: 50px" src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']) ?>"></td>
+                            <td><img style="max-height: 50px" src="<?php echo $row['imagen']; ?>"></td>
                             <td><?php echo $row['categoria'];  ?></td>
                             <td><a href="editarProductoForm.php?id=<?php echo $row['id']; ?>" class="btn btn-warning rounded-0"><i class="bi bi-pencil-square"></i></a></td>
                             <td><a href="eliminarProducto.php?id=<?php echo $row['id']; ?>" class="btn btn-danger rounded-0"><i class="bi bi-trash3"></i></a></td>

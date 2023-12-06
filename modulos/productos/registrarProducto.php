@@ -5,11 +5,12 @@
     $producto = $_POST['nombre-producto'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
-    $imagen = $_FILES['imagen'];
     $categoria = $_POST['categoria'];
 
+    $rutaImagen="";
+
     //Transformar imagen
-    $imagen=addslashes(file_get_contents($imagen['tmp_name']));
+    // $imagen=addslashes(file_get_contents($imagen['tmp_name']));
 
     $queryCheckProduct = "SELECT * FROM productos WHERE nombre = '$producto'";
     $resultCheckProduct = mysqli_query($conn, $queryCheckProduct);
@@ -21,7 +22,24 @@
         exit();
     }else{
 
-        $query="INSERT INTO productos(nombre,descripcion,precio,imagen,categoria) VALUES ('$producto','$descripcion',$precio,'$imagen',$categoria)";
+        if ($_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            // Obtiene el nombre de la imagen
+            $nombreImagen = $_FILES['imagen']['name'];
+            // Obtiene la direccion temporal de la imagen
+            // $rutaTemporal = $_FILES['imagen']['tmp_name'];
+        
+            // Ruta donde se guardará la imagen (ajusta la ruta según tu configuración)
+            $directorioDestino = '/pagina-productos/images/';
+            $rutaDestino = $directorioDestino . $nombreImagen;
+        
+            // Mover la imagen al directorio de destino
+            // move_uploaded_file($rutaTemporal, $rutaDestino);
+        
+            // Almacenar la ruta en la base de datos
+            $rutaImagen = $rutaDestino;
+        }
+
+        $query="INSERT INTO productos(nombre,descripcion,precio,imagen,categoria) VALUES ('$producto','$descripcion',$precio,'$rutaImagen',$categoria)";
 
                 if (mysqli_query($conn,$query)) {
                     $_SESSION['mensaje'] = "Registrado exitosamente";

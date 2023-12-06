@@ -17,3 +17,14 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.category{
+    color: #000;
+    background-color: rgb(165, 164, 164);
+    transition: .5s;
+}
+
+.category:hover{
+    background-color: steelblue;
+    color: aliceblue;
+}

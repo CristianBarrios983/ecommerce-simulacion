@@ -15,9 +15,9 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../styles.css">
 </head>
-<body>
+<body class="bg-primary-subtle">
 
     <?php 
         session_start();
@@ -31,7 +31,7 @@
             // Conexion a la base de datos
             require('../../includes/conexion.php');
 
-            // Consulta para obtener los datos de las personas
+            // Consulta para obtener los datos de las productos
             $query = "SELECT * FROM productos WHERE categoria = $busqueda";
             $result = mysqli_query($conn, $query);
 
@@ -48,15 +48,16 @@
         <?php
             while($row = mysqli_fetch_assoc($result)):
         ?>
-        <form id="formulario" action="modulos/carrito//cart.php" method="post" style="width: 18rem;">
+        <form id="formulario" action="../carrito/cart.php" method="post" style="width: 18rem;">
           <!-- Datos que se envian en forma oculta -->
           <input type="hidden" value="<?php echo $row['nombre']; ?>"  name="producto">
           <input type="hidden" value="<?php echo $row['descripcion']; ?>" name="descripcion">
           <input type="hidden" value="<?php echo $row['precio']; ?>" name="precio">
           <input type="hidden" value="1" name="cantidad">
+          <input type="hidden" value="<?php echo $row['imagen'];?>" name="imagen">
           <div class="card rounded-0">
             <div class="img-hover">
-              <img src="data:image/jpg;base64,<?php echo base64_encode($row['imagen']) ?>" class="card-img-top rounded-0" alt="...">
+              <img src="<?php echo $row['imagen']; ?>" class="card-img-top rounded-0" alt="...">
             </div>
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nombre']; ?></h5>
@@ -74,6 +75,10 @@
                 // No hay registros, mostrar el mensaje
                 echo '<p class="text-center fs-4 mt-4">No hay registros.</p>';
             }
+        ?>
+
+        <?php
+            include('../../includes/categorias.php');
         ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

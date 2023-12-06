@@ -7,6 +7,7 @@
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
         $cantidad = $_POST['cantidad'];
+        $imagen = $_POST['imagen'];
 
         if(isset($_SESSION['carrito'])){
             $mi_carrito = $_SESSION['carrito'];

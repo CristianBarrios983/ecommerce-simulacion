@@ -13,6 +13,10 @@
             <?php
             // En el formulario de inicio de sesión (index.php)
             session_start();
+            ini_set('display_errors', 1);
+            ini_set('display_startup_errors', 1);
+            error_reporting(E_ALL);
+
 
             // Verificar si hay un mensaje almacenado en la variable de sesión
             if (isset($_SESSION['mensaje'])) {

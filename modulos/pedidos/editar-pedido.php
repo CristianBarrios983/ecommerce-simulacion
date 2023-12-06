@@ -1,10 +1,4 @@
-<?php
-    // Inicia sesión para acceder a la variable $_SESSION
-    session_start();
-
-    // Verificar si el usuario ha iniciado sesión como admin
-    if (isset($_SESSION['email'])) {
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +31,7 @@
                             <th scope="col">Precio</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Total</th>
+                            <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
                     <?php
@@ -54,8 +49,20 @@
                             <td><?php echo $mi_carrito[$i]['producto']; ?></td>
                             <td><?php echo $mi_carrito[$i]['descripcion']; ?></td>
                             <td>$<?php echo $mi_carrito[$i]['precio']; ?></td>
-                            <td><?php echo $mi_carrito[$i]['cantidad']; ?></td>
+                            <td>
+                                <form action="../carrito/editar-cantidad.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $i ?>">
+                                    <input type="number" id="cantidad" name="cantidad" value="<?php echo $mi_carrito[$i]['cantidad'] ?>" size="1" min="1">
+                                    <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-arrow-repeat"></i></button>
+                                </form>
+                            </td>
                             <td>$<?php echo $mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']; ?></td>
+                            <td class="d-flex justify-content-center">
+                                <form action="../carrito/eliminar-producto.php" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $i ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x-lg"></i></button>
+                                </form>
+                            </td>
                         </tr>
                         <?php
                             $total=$total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
@@ -65,7 +72,7 @@
                             }
                         ?>
                         <tr class="table-last-row">
-                            <th colspan="7">Total($ARS):
+                            <th colspan="8">Total($ARS):
                             <?php
                                 if(isset($_SESSION['carrito'])){
                                 $total=0;
@@ -84,8 +91,8 @@
                         </tr>
                     </tbody>
             </table>
-            <a href="editar-pedido.php" class="btn btn-warning rounded-0">Editar pedido</a>
-            <a href="medio-transporte.php" class="btn btn-success rounded-0">Continuar pedido</a>
+            <!-- <a href="editar-pedido.php" class="btn btn-success rounded-0">Continuar pedido</a> -->
+            <a href="index.php" class="btn btn-danger rounded-0 mb-5">Volver atras</a>
             </div>
         </div>
     </div>
@@ -95,10 +102,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
-<?php 
-    }else{
-        // El usuario admin no ha iniciado sesión, redirigir a una página de inicio de sesión
-        header("Location: /pagina-productos/login.php");
-        exit();
-    }
-?>
