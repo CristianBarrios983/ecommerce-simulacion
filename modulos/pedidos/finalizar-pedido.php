@@ -18,7 +18,7 @@
     <div class="container my-5 bg-light">
         <div class="row">
             <div class="product-table">
-                <h3 class="text-center">Importe del pedido</h3>
+                <h3 class="text-center my-4">Importe del pedido</h3>
                 <table class="table">
                     <thead class="table-dark">
                         <tr>
@@ -42,7 +42,9 @@
                     <tbody>
                         <tr>
                             <th scope="row"><?php echo $i ?></th>
-                            <td>...</td>
+                            <td>
+                                <img src="<?php echo $mi_carrito[$i]['imagen']; ?>" alt="" style="max-height: 50px;">
+                            </td>
                             <td><?php echo $mi_carrito[$i]['producto']; ?></td>
                             <td><?php echo $mi_carrito[$i]['descripcion']; ?></td>
                             <td>$<?php echo $mi_carrito[$i]['precio']; ?></td>

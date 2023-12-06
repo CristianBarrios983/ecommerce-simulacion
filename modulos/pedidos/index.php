@@ -50,7 +50,9 @@
                     <tbody>
                         <tr>
                             <th scope="row"><?php echo $i ?></th>
-                            <td>...</td>
+                            <td>
+                                <img src="<?php echo $mi_carrito[$i]['imagen']; ?>" alt="" style="max-height: 50px;">
+                            </td>
                             <td><?php echo $mi_carrito[$i]['producto']; ?></td>
                             <td><?php echo $mi_carrito[$i]['descripcion']; ?></td>
                             <td>$<?php echo $mi_carrito[$i]['precio']; ?></td>

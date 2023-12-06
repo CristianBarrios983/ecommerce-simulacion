@@ -45,7 +45,9 @@
                     <tbody>
                         <tr>
                             <th scope="row"><?php echo $i ?></th>
-                            <td>...</td>
+                            <td>
+                                <img src="<?php echo $mi_carrito[$i]['imagen']; ?>" alt="" style="max-height: 50px;">
+                            </td>
                             <td><?php echo $mi_carrito[$i]['producto']; ?></td>
                             <td><?php echo $mi_carrito[$i]['descripcion']; ?></td>
                             <td>$<?php echo $mi_carrito[$i]['precio']; ?></td>
@@ -57,7 +59,7 @@
                                 </form>
                             </td>
                             <td>$<?php echo $mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']; ?></td>
-                            <td class="d-flex justify-content-center">
+                            <td class="bg-white text-center">
                                 <form action="../carrito/eliminar-producto.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $i ?>">
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-x-lg"></i></button>

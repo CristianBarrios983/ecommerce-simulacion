@@ -8,8 +8,23 @@
   </head>
   <body class="bg-secondary-subtle">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <form action="registrarProducto.php" method="post" class="border p-3 bg-white" style="width: 18rem;" enctype="multipart/form-data">
-            <h3>Registrar producto</h3>
+        <?php
+            require("../../includes/conexion.php");
+                
+            $id = $_GET['id'];
+
+            // Consulta para obtener los datos del registro a editar
+            $query = "SELECT * FROM transportes WHERE id = $id;
+            ";
+            
+            $result = mysqli_query($conn, $query);
+
+            if(mysqli_num_rows($result) == 1){
+                $row = mysqli_fetch_assoc($result);
+            
+        ?>
+        <form action="actualizarTransporte.php" method="post" class="border p-3 bg-white" style="width: 18rem;" enctype="multipart/form-data">
+            <h3>Actualizar transporte</h3>
             <?php
             // En el formulario de inicio de sesión (index.php)
             session_start();
@@ -26,42 +41,33 @@
                     <?php echo $mensaje; ?>
                 </div>
             <?php endif; ?>
+            <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
             <div class="mb-3">
-                <label for="nombre-producto" class="form-label">Nombre producto</label>
-                <input type="text" class="form-control" name="nombre-producto" aria-describedby="emailHelp">
+                <label for="empresa" class="form-label">Empresa</label>
+                <input type="text" class="form-control" name="empresa" aria-describedby="emailHelp" value="<?php echo $row['empresa'] ?>">
             </div>
             <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripcion</label>
-                <input type="text" class="form-control" name="descripcion" aria-describedby="emailHelp">
+                <label for="tiempo-entrega" class="form-label">Tiempo entrega</label>
+                <input type="text" class="form-control" name="tiempo-entrega" aria-describedby="emailHelp" value="<?php echo $row['tiempo_entrega'] ?>">
             </div>
             <div class="mb-3">
-                <label for="precio" class="form-label">Precio $</label>
-                <input type="number" class="form-control" name="precio" aria-describedby="emailHelp">
+                <label for="precio-envio" class="form-label">Precio envio $</label>
+                <input type="number" class="form-control" name="precio-envio" aria-describedby="emailHelp" value="<?php echo $row['precio_envio'] ?>">
             </div>
             <div class="mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
                 <input type="file" class="form-control" name="imagen" aria-describedby="emailHelp">
             </div>
-            <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria</label>
-                <?php 
-                    require('../../includes/conexion.php');
-
-                    $query = "SELECT id, categoria FROM categorias";
-                    $result = mysqli_query($conn,$query);
-                ?>
-                <select class="form-select" aria-label="Default select example" name="categoria">
-                    <option selected>Seleccione una categoria</option>
-                    <?php
-                         while($row = mysqli_fetch_assoc($result)):
-                    ?>
-                    <option value="<?php echo $row['id']; ?>"><?php echo $row['categoria']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary d-block w-100 rounded-0">Registrar</button>
+            <button type="submit" class="btn btn-primary d-block w-100 rounded-0">Actualizar</button>
             <a href="index.php" class="btn btn-danger d-block w-100 rounded-0 mt-1">Volver</a>
         </form>
+        <?php
+            }else{
+                echo "<p>Transporte no encontrado</p>";
+            }
+
+            mysqli_close($conn);
+        ?>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

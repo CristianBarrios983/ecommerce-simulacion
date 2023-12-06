@@ -10,10 +10,13 @@
             <a class="nav-link active" aria-current="page" href="/pagina-productos/panel-admin.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/pagina-productos/modulos/productos/index.php">Registrar Producto</a>
+            <a class="nav-link" href="/pagina-productos/modulos/productos/index.php">Productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/pagina-productos/modulos/categorias/index.php">Registrar categoria</a>
+            <a class="nav-link" href="/pagina-productos/modulos/categorias/index.php">Categorias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pagina-productos/modulos/transportes/index.php">Transportes</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

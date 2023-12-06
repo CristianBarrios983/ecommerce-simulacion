@@ -22,11 +22,11 @@
                 $mi_carrito[key($producto_existente)]['cantidad'] += $cantidad;
             } else {
                 // Producto no en el carrito, agregarlo
-                $mi_carrito[] = array("producto" => $producto, "descripcion" => $descripcion, "precio" => $precio, "cantidad" => $cantidad);
+                $mi_carrito[] = array("producto" => $producto, "descripcion" => $descripcion, "imagen" => $imagen, "precio" => $precio, "cantidad" => $cantidad);
             }
         } else {
             // No hay carrito, crear uno nuevo
-            $mi_carrito[] = array("producto" => $producto, "descripcion" => $descripcion, "precio" => $precio, "cantidad" => $cantidad);
+            $mi_carrito[] = array("producto" => $producto, "descripcion" => $descripcion, "imagen" => $imagen, "precio" => $precio, "cantidad" => $cantidad);
         }
 
         $_SESSION['carrito'] = $mi_carrito;
