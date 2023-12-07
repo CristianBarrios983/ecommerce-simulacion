@@ -3,6 +3,7 @@
 
     // Empieza el carrito
     if(isset($_POST['producto'])){
+        $id = $_POST['id'];
         $producto = $_POST['producto'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
@@ -22,11 +23,11 @@
                 $mi_carrito[key($producto_existente)]['cantidad'] += $cantidad;
             } else {
                 // Producto no en el carrito, agregarlo
-                $mi_carrito[] = array("producto" => $producto, "descripcion" => $descripcion, "imagen" => $imagen, "precio" => $precio, "cantidad" => $cantidad);
+                $mi_carrito[] = array("id" => $id, "producto" => $producto, "descripcion" => $descripcion, "imagen" => $imagen, "precio" => $precio, "cantidad" => $cantidad);
             }
         } else {
             // No hay carrito, crear uno nuevo
-            $mi_carrito[] = array("producto" => $producto, "descripcion" => $descripcion, "imagen" => $imagen, "precio" => $precio, "cantidad" => $cantidad);
+            $mi_carrito[] = array("id" => $id, "producto" => $producto, "descripcion" => $descripcion, "imagen" => $imagen, "precio" => $precio, "cantidad" => $cantidad);
         }
 
         $_SESSION['carrito'] = $mi_carrito;

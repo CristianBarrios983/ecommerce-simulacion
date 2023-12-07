@@ -12,11 +12,11 @@
     if(mysqli_num_rows($result) == 1){
         $row = mysqli_fetch_assoc($result);
         $hash = $row['pass'];
-        $user = $row['id_rol'];
+        $user = $row['id'];
 
         if(password_verify($pass, $hash)){
             $_SESSION['email'] = $email;
-            $_SESSION['rol'] = $user;
+            $_SESSION['id'] = $user;
             header("Location: ../../index.php");
             exit();
         }else{

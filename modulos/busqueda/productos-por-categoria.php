@@ -50,6 +50,7 @@
         ?>
         <form id="formulario" action="../carrito/cart.php" method="post" style="width: 18rem;">
           <!-- Datos que se envian en forma oculta -->
+          <input type="hidden" value="<?php echo $row['id']; ?>" name="id">
           <input type="hidden" value="<?php echo $row['nombre']; ?>"  name="producto">
           <input type="hidden" value="<?php echo $row['descripcion']; ?>" name="descripcion">
           <input type="hidden" value="<?php echo $row['precio']; ?>" name="precio">

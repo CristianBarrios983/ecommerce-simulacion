@@ -38,7 +38,7 @@
                             //Obtener el resultado de la consulta
                             $row = mysqli_fetch_assoc($result);
                             $totalUsuarios = $row['totalUsuarios'];
-                        ?>
+                    ?>
                     <p class="card-text"><?php echo $totalUsuarios; ?></p>
                 </div>
                 </div>
@@ -59,7 +59,7 @@
                             //Obtener el resultado de la consulta
                             $row = mysqli_fetch_assoc($result);
                             $totalProductos = $row['totalProductos'];
-                        ?>
+                    ?>
                     <p class="card-text"><?php echo $totalProductos ?></p>
                 </div>
                 </div>
@@ -67,23 +67,46 @@
 
             <div class="col-md-3">
                 <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
-                <div class="card-header">Pedidos</div>
+                <div class="card-header">Categorias</div>
                 <div class="card-body">
-                    <h5 class="card-title">Pedidos realizados</h5>
-                    <p class="card-text">0</p>
+                    <h5 class="card-title">Categorias registradas</h5>
+                    <?php 
+                            require('includes/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS totalCategorias FROM categorias";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $totalCategorias = $row['totalCategorias'];
+                    ?>
+                    <p class="card-text"><?php echo $totalCategorias; ?></p>
                 </div>
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header">Ganancias</div>
+                <div class="card-header">Pedidos</div>
                 <div class="card-body">
-                    <h5 class="card-title">Ganancias</h5>
-                    <p class="card-text">$0</p>
+                    <h5 class="card-title">Categorias realizados</h5>
+                    <?php 
+                            require('includes/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS totalPedidos FROM pedidos";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $totalPedidos = $row['totalPedidos'];
+                    ?>
+                    <p class="card-text"><?php echo $totalPedidos; ?></p>
                 </div>
                 </div>
             </div>
+
         </div>
 
         <div class="row">
@@ -94,16 +117,44 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Producto</th>
+                            <th scope="col"></th>
                             <th scope="col">Vendidos</th>
                         </tr>
                     </thead>
+                    <?php
+                        require("includes/conexion.php");
+
+                        $query="SELECT productos.nombre, productos.imagen, SUM(detalles.cantidad) AS total_cantidad
+                        FROM detalles
+                        JOIN productos ON detalles.producto = productos.id
+                        GROUP BY productos.nombre
+                        ORDER BY total_cantidad DESC;
+                        ";
+                        $result=mysqli_query($conn,$query);
+
+                        if($result){
+                    ?>
+
+                    <?php
+                        $i = 0;
+                        while($row = mysqli_fetch_assoc($result)):
+                            $i++;
+                    ?>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            <th scope="row"><?php echo $i ?></th>
+                            <td><?php echo $row['nombre']; ?></td>
+                            <td>
+                                <img src="<?php echo $row['imagen']; ?>" alt="" style="width: 100px;">
+                            </td>
+                            <td><?php echo $row['total_cantidad']; ?></td>
                         </tr>
                     </tbody>
+                    <?php endwhile; ?>
+
+                    <?php
+                        }
+                    ?>
                 </table>
             </div>
         </div>

@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body class="bg-primary-subtle">
-    <?php
-        include('../../includes/menu.php');
-    ?>
 
     <div class="container my-5">
         <div class="title">
@@ -35,7 +32,7 @@
                         </tr>
                     </thead>
                     <?php
-                        if(isset($_SESSION['carrito'])){
+                        if(isset($_SESSION['carrito']) && !(empty($_SESSION['carrito']))){
                         $mi_carrito=$_SESSION['carrito'];
                          $total=0;
                             for($i=0;$i<=count($mi_carrito)-1;$i++){
@@ -71,6 +68,8 @@
                             }
                             }
                             }
+                            }else{
+                                header("Location: ../../index.php");
                             }
                         ?>
                         <tr class="table-last-row">

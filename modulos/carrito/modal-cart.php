@@ -14,7 +14,7 @@
             <ul class="list-group mb-3">
 
             <?php
-              if(isset($_SESSION['carrito'])){
+              if(isset($_SESSION['carrito']) && !(empty($_SESSION['carrito']))){
                 $total=0;
                 for($i=0;$i<=count($mi_carrito)-1;$i++){
                   if(isset($mi_carrito[$i])){
@@ -24,6 +24,9 @@
               <li class="list-group-item d-flex justify-content-between">
                 <div class="row col-12">
 
+                  <div class="col-lg-6">
+                    <img src="<?php echo $mi_carrito[$i]['imagen']; ?>" alt="" style="max-width: 100px;">
+                  </div>
                   <div class="col-6 p-0"><h6 class="my-0">Cantidad: <?php echo $mi_carrito[$i]['cantidad'] ?> : <?php echo $mi_carrito[$i]['producto']; ?> </h6></div>
                   <div class="col-5 p-0" style="text-align: right; color:#000000"></div>
                   <span class="text-muted" style="text-align: right; color:#000000">$ <?php echo $mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']; ?></span>
@@ -35,9 +38,14 @@
                 }
                 }
                 }
+                }else{
+                  echo '<p class="text-center">No hay productos</p>';
                 }
               ?>
 
+              <?php
+                if(!empty($_SESSION['carrito'])){
+              ?>
               <div class="list-group-item d-flex justify-content-between">
                 <span style="text-align: left; color:#000000;">Total (ARS)</span>
                 <strong style="text-align: left; color:#000000;" >$
@@ -57,6 +65,9 @@
                   ?>
                 </strong>
               </div>
+              <?php
+                }
+              ?>
 
             </ul>
           </div>
@@ -65,8 +76,14 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <?php
+            if(!empty($_SESSION['carrito'])){
+        ?>
         <a type="button" href="/pagina-productos/modulos/carrito/vaciarCarrito.php" class="btn btn-primary">Vaciar</a>
         <a type="button" href="/pagina-productos/modulos/pedidos/index.php" class="btn btn-success">Continuar pedido</a>
+        <?php
+            }
+        ?>
       </div>
     </div>
   </div>

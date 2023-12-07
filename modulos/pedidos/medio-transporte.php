@@ -1,3 +1,9 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['email'])){
+        if(isset($_SESSION['carrito']) && !(empty($_SESSION['carrito']))){
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,69 +27,64 @@
         </div>
         <div class="row justify-content-center gap-3 mb-5">
 
-            <form id="formulario" action="../carrito/cart.php" method="post" style="width: 18rem;">
-            <!-- Datos que se envian en forma oculta -->
-            <input type="hidden" value="ref"  name="transporte">
-            <input type="hidden" value="Transporte de envio: Empresa 01" name="empresa">
-            <input type="hidden" value="15000" name="precio">
-            <input type="hidden" value="1" name="cantidad">
-            <div class="card rounded-0">
-                <div class="img-hover">
-                <img src="../../images/transporte.webp" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="card-body">
-                <h5 class="card-title">Empresa 01</h5>
-                <p class="card-text card-description text-center">24hs</p>
-                <p class="card-text text-success fw-semibold fs-3">$15000</p>
-                <input type="submit" class="btn btn-primary d-block rounded-0 w-100" value="Seleccionar transporte">
-                </div>
-            </div>
-            </form>
+        <?php
+            //Conexion a la base de datos
+            require('../../includes/conexion.php');
 
-            <form id="formulario" action="../carrito/cart.php" method="post" style="width: 18rem;">
-            <!-- Datos que se envian en forma oculta -->
-            <input type="hidden" value="ref"  name="transporte">
-            <input type="hidden" value="Transporte de envio: Empresa 02" name="empresa">
-            <input type="hidden" value="10000" name="precio">
-            <input type="hidden" value="1" name="cantidad">
-            <div class="card rounded-0">
-                <div class="img-hover">
-                <img src="../../images/transporte.webp" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="card-body">
-                <h5 class="card-title">Empresa 02</h5>
-                <p class="card-text card-description text-center">48hs</p>
-                <p class="card-text text-success fw-semibold fs-3">$10000</p>
-                <input type="submit" class="btn btn-primary d-block rounded-0 w-100" value="Seleccionar transporte">
-                </div>
-            </div>
-            </form>
+            //Consulta para obtener los datos de los productos
+            $query = "SELECT * FROM transportes";
+            $result = mysqli_query($conn, $query);
 
-            <form id="formulario" action="../carrito/cart.php" method="post" style="width: 18rem;">
+            if(mysqli_num_rows($result) > 0){
+        ?>
+        
+        <?php
+            while($row = mysqli_fetch_assoc($result)):
+        ?>
+            <form id="formulario" action="finalizar-pedido.php" method="post" style="width: 18rem;">
             <!-- Datos que se envian en forma oculta -->
-            <input type="hidden" value="ref"  name="transporte">
-            <input type="hidden" value="Transporte de envio: Empresa 03" name="empresa">
-            <input type="hidden" value="5000" name="precio">
-            <input type="hidden" value="1" name="cantidad">
+            <input type="hidden" value="<?php echo $row['id'] ?>"  name="id">
+            <input type="hidden" value="Transporte de envio: <?php echo $row['empresa'] ?>" name="empresa">
+            <input type="hidden" value="<?php echo $row['tiempo_entrega'] ?>" name="tiempo_entrega">
+            <input type="hidden" value="<?php echo $row['precio_envio'] ?>" name="precio_envio">
+            <input type="hidden" value="<?php echo $row['imagen'] ?>" name="imagen">
             <div class="card rounded-0">
                 <div class="img-hover">
-                <img src="../../images/transporte.webp" class="card-img-top rounded-0" alt="...">
+                <img src="<?php echo $row['imagen'] ?>" class="card-img-top rounded-0" alt="...">
                 </div>
                 <div class="card-body">
-                <h5 class="card-title">Empresa 03</h5>
-                <p class="card-text card-description text-center">72hs</p>
-                <p class="card-text text-success fw-semibold fs-3">$5000</p>
+                <h5 class="card-title"><?php echo $row['empresa'] ?></h5>
+                <p class="card-text card-description text-center"><?php echo $row['tiempo_entrega'] ?></p>
+                <p class="card-text text-success fw-semibold fs-3"><?php echo $row['precio_envio'] ?></p>
                 <input type="submit" class="btn btn-primary d-block rounded-0 w-100" value="Seleccionar transporte">
                 </div>
             </div>
             </form>
+            <?php endwhile; ?>
+
+            <?php
+                } else {
+                    // No hay registros, mostrar el mensaje
+                    echo '<p class="text-center fs-4">No hay transportes por el momento</p>';
+                }
+            
+            // Cerrar la conexión a la base de datos
+            mysqli_close($conn);
+            ?>
     
         </div>
         <a href="index.php" class="btn btn-danger rounded-0 mb-3">Volver atras</a>
-        <a href="finalizar-pedido.php" class="btn btn-success rounded-0 mb-3">Siguiente</a>
    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
    
 </body>
 </html>
+<?php
+        }else{
+            header("Location: ../../index.php");
+        }
+    }else{
+        header("Location: ../../index.php");
+    }
+?>
