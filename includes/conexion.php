@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "webproducts";
+    $database = "tienda";
 
 
     //Estableciendo la conexion con la base de datos

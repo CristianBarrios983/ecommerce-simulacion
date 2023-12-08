@@ -87,10 +87,10 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card text-bg-success mb-3" style="max-width: 18rem;">
                 <div class="card-header">Pedidos</div>
                 <div class="card-body">
-                    <h5 class="card-title">Categorias registradas</h5>
+                    <h5 class="card-title">Pedidos realizados</h5>
                     <?php 
                             require('includes/conexion.php');
 
