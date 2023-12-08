@@ -55,8 +55,32 @@ if (!empty($_POST['nombre']) && !empty($_POST['apellido']) && !empty($_POST['pai
             }
             unset($_SESSION['carrito']);
             unset($_SESSION['transporte']);
-            echo "Pedido realizado satisfactoriamente";
-            echo '<a href="../../index.php">Ir a la pagina principal</a>';
+            
+            ?>
+
+            <!-- Mensaje de pedido realizado -->
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>¡Muchas gracias!</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+            </head>
+            <body class="bg-primary-subtle">
+                <div class="container d-flex justify-content-center align-items-center vh-100">
+                    <div class="card rounded-0 p-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-success text-center fs-1 fw-bold text-capitalize">***Pedido realizado satisfactoriamente***</h5>
+                            <p class="card-text text-center fs-3 fw-semibold">¡Muchas gracias por confiar en nosotros!</p>
+                            <a href="../../index.php" class="btn btn-primary rounded-0 fs-5">Ir a la tienda</a>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+
+            <?php
         } else {
             echo "Error al registrar pedido: " . mysqli_error($conn);
         }

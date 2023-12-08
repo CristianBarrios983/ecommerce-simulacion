@@ -90,7 +90,7 @@
                 <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
                 <div class="card-header">Pedidos</div>
                 <div class="card-body">
-                    <h5 class="card-title">Categorias realizados</h5>
+                    <h5 class="card-title">Categorias registradas</h5>
                     <?php 
                             require('includes/conexion.php');
 
@@ -110,7 +110,7 @@
         </div>
 
         <div class="row">
-            <h2>Productos mas vendidos</h2>
+            <h2>Productos mas solicitados</h2>
             <div class="col-md-6">
                 <table class="table">
                     <thead class="table-dark">
@@ -118,7 +118,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Producto</th>
                             <th scope="col"></th>
-                            <th scope="col">Vendidos</th>
+                            <th scope="col">cantidad</th>
                         </tr>
                     </thead>
                     <?php
