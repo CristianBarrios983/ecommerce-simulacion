@@ -1,3 +1,10 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .img-hover{
     overflow: hidden;
     cursor: pointer;
@@ -27,4 +34,9 @@
 .category:hover{
     background-color: steelblue;
     color: aliceblue;
+}
+
+/* Para posicionar el footer siempre abajo */
+footer{
+    margin-top: auto;
 }

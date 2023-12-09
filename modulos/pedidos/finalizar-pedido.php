@@ -38,47 +38,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../styles.css">
 </head>
 <body class="bg-primary-subtle">
 
-    <!-- Menu -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">  
-        <div class="container-fluid">
-            <a class="navbar-brand">Tienda</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/pagina-productos/index.php">Home</a>
-                    </li>
-                    <?php
-                        if(isset($_SESSION['email'])){
-                    ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle fs-5" style="color: antiquewhite;"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Cuenta: <span class="badge text-bg-info"><?php echo $_SESSION['email']; ?></span></a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/pagina-productos/includes/salir.php">Salir</a></li>
-                        </ul>
-                    <?php 
-                        }
-                    ?>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php
+        include('../../includes/menu.php');
+        include('../carrito/modal-cart.php');
+    ?>
 
     <div class="container my-5 bg-light">
         <div class="row">
             <div class="product-table">
                 <h3 class="text-center my-4">Importe del pedido</h3>
-                <table class="table">
+                <table class="table text-center">
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
@@ -102,7 +77,7 @@
                         <tr>
                             <th scope="row"><?php echo $i ?></th>
                             <td>
-                                <img src="<?php echo $mi_carrito[$i]['imagen']; ?>" alt="" style="max-height: 50px;">
+                                <img src="<?php echo $mi_carrito[$i]['imagen']; ?>" alt="" style="width: 70px;">
                             </td>
                             <td><?php echo $mi_carrito[$i]['producto']; ?></td>
                             <td><?php echo $mi_carrito[$i]['descripcion']; ?></td>
@@ -129,7 +104,7 @@
                             <td>$<?php echo $transporte['precio_envio']; ?></td>
                         </tr>
                         <tr class="table-last-row">
-                            <th colspan="7">Total($ARS):
+                            <th colspan="7" class="text-start">Total:
                             <?php
                                 // Verifica si existe la session y si no esta vacia
                                 if(isset($_SESSION['carrito'])){
@@ -143,32 +118,32 @@
                                 }
                                 }
                                 if(!isset($total)){$total = '0';}else{$total = $total;}
-                                echo $total;
+                                echo "$".$total;
                             ?>
                             </th>
                         </tr>
                         <tr class="table-last-row">
-                            <th colspan="7">I.V.A($ARS):
+                            <th colspan="7" class="text-start">I.V.A:
                             <?php
                                 $iva=$total/1.21;
                                 $totaliva=$total-$iva;
-                                echo number_format($totaliva, 0, '', '');
+                                echo "$".number_format($totaliva, 0, '', '');
                             ?>
                             </th>
                         </tr>
                         <tr class="table-last-row">
-                            <th colspan="7">Total + I.V.A($ARS):
+                            <th colspan="7" class="text-start">Total + I.V.A:
                             <?php
                                 $total_iva=$total+$totaliva;
-                                echo number_format($total_iva, 0, '', '');
+                                echo "$".number_format($total_iva, 0, '', '');
                             ?>
                             </th>
                         </tr>
                         <tr class="table-last-row">
-                            <th colspan="7">Total + envio($ARS):
+                            <th colspan="7" class="text-start">Total + envio:
                             <?php
                                 $totalfinal=$total_iva+$transporte['precio_envio'];
-                                echo number_format($totalfinal, 0, '', '');
+                                echo "$".number_format($totalfinal, 0, '', '');
                             ?>
                             </th>
                         </tr>
@@ -183,56 +158,50 @@
                     <input type="hidden" value="<?php echo number_format($totalfinal, 0, '', ''); ?>" name="total" id="total">
                     <div class="mb-3 d-flex gap-2">
                         <div class="col-lg-6">
-                            <label for="nombre" class="form-label fs-5">Nombre</label>
-                            <input type="text" class="form-control rounded-0 fs-5" id="nombre" name="nombre" required>
+                            <input type="text" class="form-control rounded-0" id="nombre" name="nombre" placeholder="Nombre" required>
                         </div>
                         <div class="col-lg-6">
-                            <label for="apellido" class="form-label fs-5">Apellido</label>
-                            <input type="text" class="form-control rounded-0 fs-5" id="apellido" name="apellido" required>
+                            <input type="text" class="form-control rounded-0" id="apellido" name="apellido" placeholder="Apellido" required>
                         </div>
                     </div>
                     <div class="mb-3 d-flex gap-2">
                         <div class="col-lg-6">
-                            <label for="pais" class="form-label fs-5">Pais</label>
-                            <select class="form-select fs-5 rounded-0" name="pais" id="pais" required>
-                                <option selected>Seleccione un pais</option>
+                            <select class="form-select rounded-0" name="pais" id="pais" required>
+                                <option value="" disabled selected>Seleccione un pais</option>
                                 <option value="Argentina">Argentina</option>
                                 <option value="Estados Unidos">Estados Unidos</option>
                                 <option value="Mexico">Mexico</option>
                             </select>
                         </div>
                         <div class="col-lg-6">
-                            <label for="direccion" class="form-label fs-5">Direccion</label>
-                            <input type="text" class="form-control rounded-0 fs-5" id="direccion" name="direccion" placeholder="Apartamento, suite, unidad, edificio, piso, etc." required>
+                            <input type="text" class="form-control rounded-0" id="direccion" name="direccion" placeholder="Apartamento, suite, unidad, edificio, piso, etc." required>
                         </div>
                     </div>
                     <div class="mb-3 d-flex gap-2">
                         <div class="col-lg-6">
-                            <label for="ciudad" class="form-label fs-5">Ciudad</label>
-                            <input type="text" class="form-control rounded-0 fs-5" id="ciudad" name="ciudad" required>
+                            <input type="text" class="form-control rounded-0" id="ciudad" name="ciudad" placeholder="Ciudad" required>
                         </div>
                         <div class="col-lg-6">
-                            <label for="ubicacion" class="form-label fs-5">Estado/Provincia/Region</label>
-                            <input type="text" class="form-control rounded-0 fs-5" id="ubicacion" name="ubicacion" required>
+                            <input type="text" class="form-control rounded-0" id="ubicacion" name="ubicacion" placeholder="Estado/Provincia/Region" required>
                         </div>
                     </div>
                     <div class="mb-3 d-flex gap-2">
                         <div class="col-lg-6">
-                            <label for="c_postal" class="form-label fs-5">Codigo Postal</label>
-                            <input type="text" class="form-control rounded-0 fs-5" id="c_postal" name="c_postal" required>
+                            <input type="number" class="form-control rounded-0" id="c_postal" name="c_postal" placeholder="Codigo postal" required>
                         </div>
                         <div class="col-lg-6">
-                            <label for="telefono" class="form-label fs-5">Telefono</label>
-                            <input type="number" class="form-control rounded-0 fs-5" id="telefono" name="telefono" required>
+                            <input type="number" class="form-control rounded-0" id="telefono" name="telefono" placeholder="Telefono" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success rounded-0 w-100 fs-5">Hacer pedido</button>
+                    <button type="submit" class="btn btn-success rounded-0 w-100">Hacer pedido</button>
                 </form>
             </div>
         </div>
     </div>
 
-
+    <?php
+        include('../../includes/footer.php');
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

@@ -20,7 +20,7 @@
   ?>
 
    <main class="container">
-    <h2 class="text-center mb-5 mt-5">Mejores productos</h2>
+    <h2 class="text-center mb-5 mt-5 fw-semibold">Nuestros productos</h2>
       <div class="row justify-content-center gap-3 mb-5">
 
       <?php
@@ -51,8 +51,8 @@
             </div>
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nombre']; ?></h5>
-              <p class="card-text card-description"><?php echo $row['descripcion']; ?></p>
-              <p class="card-text text-success fw-semibold fs-3"><?php echo "$".$row['precio']; ?></p>
+              <p class="card-text card-description text-muted"><?php echo $row['descripcion']; ?></p>
+              <p class="card-text text-success fw-semibold fs-4"><?php echo "$".$row['precio']; ?></p>
               <input type="submit" class="btn btn-primary d-block rounded-0 w-100" value="Añadir">
             </div>
           </div>
@@ -75,6 +75,7 @@
 
    <?php
       include('includes/categorias.php');
+      include('includes/footer.php');
    ?>
 
 

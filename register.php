@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tienda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body class="bg-info">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
@@ -27,20 +30,16 @@
                 </div>
             <?php endif; ?>
             <div class="mb-3">
-                <label for="nombre-completo" class="form-label">Nombre completo</label>
-                <input type="text" class="form-control" name="nombre-completo" aria-describedby="emailHelp">
+                <input type="text" class="form-control rounded-0" name="nombre-completo" placeholder="Nombre completo" required>
             </div>
             <div class="mb-3">
-                <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" class="form-control" name="usuario" aria-describedby="emailHelp">
+                <input type="text" class="form-control rounded-0" name="usuario" placeholder="Usuario" required>
             </div>
             <div class="mb-3">
-                <label for="correo" class="form-label">Correo</label>
-                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp">
+                <input type="email" class="form-control rounded-0" name="correo" aria-describedby="emailHelp" placeholder="Correo electronico" required>
             </div>
             <div class="mb-3">
-                <label for="pass" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="pass">
+                <input type="password" class="form-control rounded-0" name="pass" placeholder="Contraseña" required>
             </div>
             <button type="submit" class="btn btn-primary d-block w-100 rounded-0">Registrarse</button>
             <div class="mt-3 text-center">

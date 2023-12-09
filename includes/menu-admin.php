@@ -25,7 +25,7 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person-circle fs-5" style="color: antiquewhite;"></i>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu rounded-0">
               <li><a class="dropdown-item">Cuenta: <span class="badge text-bg-warning"><?php echo $_SESSION['admin']; ?></span></a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/pagina-productos/includes/salir-admin.php">Salir</a></li>

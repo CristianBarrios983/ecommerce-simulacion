@@ -62,8 +62,8 @@
             </div>
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nombre']; ?></h5>
-              <p class="card-text card-description"><?php echo $row['descripcion']; ?></p>
-              <p class="card-text text-success fw-semibold fs-3"><?php echo "$".$row['precio']; ?></p>
+              <p class="card-text card-description text-muted"><?php echo $row['descripcion']; ?></p>
+              <p class="card-text text-success fw-semibold fs-4"><?php echo "$".$row['precio']; ?></p>
               <input type="submit" class="btn btn-primary d-block rounded-0 w-100" value="Añadir">
             </div>
           </div>
@@ -76,10 +76,15 @@
                 // No hay registros, mostrar el mensaje
                 echo '<p class="text-center fs-4 mt-4">No hay registros.</p>';
             }
+        // Cerrar la conexión a la base de datos
+        mysqli_close($conn);
         ?>
+        </div>
+   </main>
 
         <?php
             include('../../includes/categorias.php');
+            include('../../includes/footer.php');
         ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

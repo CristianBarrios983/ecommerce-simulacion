@@ -15,16 +15,19 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
   </head>
   <body>
     <?php include('includes/menu-admin.php') ?>
 
-    <div class="container">
-        <h2>Panel admin</h2>
+    <div class="container my-4">
+        <h2 class="mb-3">Panel admin</h2>
 
         <div class="row">
             <div class="col-md-3">
-                <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card text-bg-primary mb-3 rounded-0" style="max-width: 18rem;">
                 <div class="card-header">Usuarios</div>
                 <div class="card-body">
                     <h5 class="card-title">Usuarios registrados</h5>
@@ -45,7 +48,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
+                <div class="card text-bg-warning mb-3 rounded-0" style="max-width: 18rem;">
                 <div class="card-header">Productos</div>
                 <div class="card-body">
                     <h5 class="card-title">Productos registrados</h5>
@@ -66,7 +69,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
+                <div class="card text-bg-danger mb-3 rounded-0" style="max-width: 18rem;">
                 <div class="card-header">Categorias</div>
                 <div class="card-body">
                     <h5 class="card-title">Categorias registradas</h5>
@@ -87,7 +90,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-bg-success mb-3" style="max-width: 18rem;">
+                <div class="card text-bg-success mb-3 rounded-0" style="max-width: 18rem;">
                 <div class="card-header">Pedidos</div>
                 <div class="card-body">
                     <h5 class="card-title">Pedidos realizados</h5>
@@ -110,9 +113,9 @@
         </div>
 
         <div class="row">
-            <h2>Productos mas solicitados</h2>
+            <h2 class="mb-3">Productos mas solicitados</h2>
             <div class="col-md-6">
-                <table class="table">
+                <table class="table text-center">
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
@@ -128,7 +131,8 @@
                         FROM detalles
                         JOIN productos ON detalles.producto = productos.id
                         GROUP BY productos.nombre
-                        ORDER BY total_cantidad DESC;
+                        ORDER BY total_cantidad DESC
+                        LIMIT 5;
                         ";
                         $result=mysqli_query($conn,$query);
 
@@ -159,6 +163,10 @@
             </div>
         </div>
     </div>
+
+    <?php
+        include('includes/footer.php');
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>

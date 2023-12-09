@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body class="bg-dark">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
@@ -27,12 +30,10 @@
                 </div>
             <?php endif; ?>
             <div class="mb-3">
-                <label for="correo" class="form-label">Correo</label>
-                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp">
+                <input type="email" class="form-control rounded-0" name="correo" aria-describedby="emailHelp" placeholder="Correo electronico" required>
             </div>
             <div class="mb-3">
-                <label for="pass" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" name="pass">
+                <input type="password" class="form-control rounded-0" name="pass" placeholder="Contraseña" required>
             </div>
             <button type="submit" class="btn btn-primary d-block w-100 rounded-0">Acceder</button>
         </form>

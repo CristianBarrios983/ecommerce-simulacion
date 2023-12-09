@@ -24,20 +24,44 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/pagina-productos/index.php">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Productos</a>
-                </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#categorias">Categorias</a>
-                </li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                </li> -->
+
+                <?php
+                    //Conexion a la base de datos
+                    require('conexion.php');
+
+                    //Consulta para obtener los datos de los productos
+                    $query = "SELECT * FROM categorias";
+                    $result = mysqli_query($conn, $query);
+
+                    if(mysqli_num_rows($result) > 0){
+                ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Categorias
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"></a></li>
+                        <?php
+                            while($row = mysqli_fetch_assoc($result)):
+                        ?>
+                        <li><a class="dropdown-item" href="/pagina-productos/modulos/busqueda/productos-por-categoria.php?categoria=<?php echo $row['id']; ?>""><?php echo $row['categoria']; ?></a></li>
+
+                        <?php endwhile; ?>
+
+                <?php
+
+                    } else {
+                        // No hay registros, mostrar el mensaje
+                        echo '<li><a class="dropdown-item">No hay categorias</a></li>';
+                    }
+                
+                    // Cerrar la conexión a la base de datos
+                    mysqli_close($conn);
+                ?>
                     </ul>
-                </li> -->
+                </li>
                 <?php
                     if(isset($_SESSION['email'])){
                 ?>
@@ -45,7 +69,7 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="bi bi-person-circle fs-5" style="color: antiquewhite;"></i>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="#">Cuenta: <span class="badge text-bg-info"><?php echo $_SESSION['email']; ?></span></a></li>
                         <li><a class="dropdown-item" href="/pagina-productos/modulos/usuarios/mis-pedidos.php">Mis pedidos</a></li>
                         <li><hr class="dropdown-divider"></li>
