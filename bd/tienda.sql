@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-12-2023 a las 05:10:38
+-- Tiempo de generación: 09-12-2023 a las 22:51:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -62,18 +62,6 @@ CREATE TABLE `datos_envios` (
   `telefono` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `datos_envios`
---
-
-INSERT INTO `datos_envios` (`id`, `nombre`, `apellido`, `pais`, `direccion`, `ciudad`, `ubicacion`, `codigo_postal`, `telefono`) VALUES
-(1, 'Cristian', 'Barrios', 'Argentina', 'ufhirfmoewiodjoewd', 'Formosa', 'Formosa', '3600', 2147483647),
-(2, 'Cristian', 'Barrios', 'Argentina', 'ufhirfmoewiodjoewd', 'Formosa', 'Formosa', '3600', 2147483647),
-(3, 'Cristian', 'Barrios', 'Argentina', 'ufhirfmoewiodjoewd', 'Formosa', 'Formosa', '3600', 2147483647),
-(4, 'Cristian', 'Barrios', 'Estados Unidos', 'ufhirfmoewiodjoewd', 'Formosa', 'Formosa', '3600', 2147483647),
-(5, 'Cristian', 'Barrios', 'Mexico', 'ufhirfmoewiodjoewd', 'Formosa', 'Formosa', '3600', 2147483647),
-(6, 'Cristian', 'Barrios', 'Argentina', 'ufhirfmoewiodjoewd', 'Formosa', 'Formosa', '3600', 2147483647);
-
 -- --------------------------------------------------------
 
 --
@@ -87,26 +75,6 @@ CREATE TABLE `detalles` (
   `cantidad` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `detalles`
---
-
-INSERT INTO `detalles` (`id`, `pedido`, `producto`, `cantidad`, `total`) VALUES
-(1, 2, 12, 1, 850000),
-(2, 2, 14, 2, 1340000),
-(3, 2, 17, 1, 250000),
-(4, 2, 18, 2, 840000),
-(5, 3, 12, 1, 850000),
-(6, 3, 14, 2, 1340000),
-(7, 3, 17, 1, 250000),
-(8, 3, 18, 2, 840000),
-(9, 4, 16, 1, 500000),
-(10, 5, 16, 4, 2000000),
-(11, 6, 11, 1, 500000),
-(12, 6, 14, 1, 670000),
-(13, 6, 17, 1, 250000),
-(14, 6, 12, 1, 850000);
 
 -- --------------------------------------------------------
 
@@ -122,18 +90,6 @@ CREATE TABLE `pedidos` (
   `datos_envio` int(11) DEFAULT NULL,
   `transporte` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `pedidos`
---
-
-INSERT INTO `pedidos` (`id`, `fecha`, `usuario`, `total`, `datos_envio`, `transporte`) VALUES
-(1, '2023-12-07', 5, 3864256, 1, 1),
-(2, '2023-12-07', 5, 3864256, 2, 1),
-(3, '2023-12-07', 5, 3864256, 3, 1),
-(4, '2023-12-07', 5, 596777, 4, 2),
-(5, '2023-12-07', 5, 2352107, 5, 3),
-(6, '2023-12-08', 5, 2678967, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -227,9 +183,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `correo`, `pass`, `rol`) VALUES
-(4, 'Cristian', 'admin', 'admin@gmail.com', '$2y$10$UNglkANYI5yHaZsl81Gmj.RwsPJUQs/Kwsur8Lk47OwOD0LocMpqu', 1),
-(5, 'john wick', 'john', 'john@gmail.com', '$2y$10$EoWpizcPSQt5PgNy8/w1S.ettWX3njJBbSp3QNUhC/8XgZ29CwLaS', 2),
-(6, 'john wick', 'john wick', 'johnwick@gmail.com', '$2y$10$NQPcOF0IUO345GIEmxSOFu8JlsrlofMB260dGWWzxuKbkArU8Sd6W', 2);
+(4, 'Cristian', 'admin', 'admin@gmail.com', '$2y$10$UNglkANYI5yHaZsl81Gmj.RwsPJUQs/Kwsur8Lk47OwOD0LocMpqu', 1);
 
 --
 -- Índices para tablas volcadas
@@ -304,19 +258,19 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `datos_envios`
 --
 ALTER TABLE `datos_envios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detalles`
 --
 ALTER TABLE `detalles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -340,7 +294,7 @@ ALTER TABLE `transportes`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
