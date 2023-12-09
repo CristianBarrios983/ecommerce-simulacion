@@ -2,6 +2,7 @@
     session_start();
     
     if(isset($_SESSION['email'])){
+        
         if(isset($_SESSION['carrito']) && !(empty($_SESSION['carrito']))){
 
             if(isset($_POST['empresa'])){
@@ -21,11 +22,6 @@
                 );
 
                 $transporte = $_SESSION['transporte'];
-
-                // Mostrar la session
-                // echo "<pre>";
-                // print_r($_SESSION['transporte']);
-                // echo "</pre>";
             
 ?>
 <!DOCTYPE html>
@@ -154,14 +150,20 @@
         <div class="row">
             <h3 class="text-center">Datos de envio</h3>
             <div class="form-datos-envio d-flex justify-content-center">
-                <form class="mt-5 mb-5" action="hacer-pedido.php" method="post" style="width:40rem">
+                <form class="mt-5 mb-5 needs-validation" action="hacer-pedido.php" method="post" style="width:40rem" novalidate>
                     <input type="hidden" value="<?php echo number_format($totalfinal, 0, '', ''); ?>" name="total" id="total">
                     <div class="mb-3 d-flex gap-2">
                         <div class="col-lg-6">
                             <input type="text" class="form-control rounded-0" id="nombre" name="nombre" placeholder="Nombre" required>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control rounded-0" id="apellido" name="apellido" placeholder="Apellido" required>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 d-flex gap-2">
@@ -172,25 +174,43 @@
                                 <option value="Estados Unidos">Estados Unidos</option>
                                 <option value="Mexico">Mexico</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Seleccione el pais
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control rounded-0" id="direccion" name="direccion" placeholder="Apartamento, suite, unidad, edificio, piso, etc." required>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 d-flex gap-2">
                         <div class="col-lg-6">
                             <input type="text" class="form-control rounded-0" id="ciudad" name="ciudad" placeholder="Ciudad" required>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control rounded-0" id="ubicacion" name="ubicacion" placeholder="Estado/Provincia/Region" required>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 d-flex gap-2">
                         <div class="col-lg-6">
                             <input type="number" class="form-control rounded-0" id="c_postal" name="c_postal" placeholder="Codigo postal" required>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <input type="number" class="form-control rounded-0" id="telefono" name="telefono" placeholder="Telefono" required>
+                            <div class="invalid-feedback">
+                                Campo obligatorio
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success rounded-0 w-100">Hacer pedido</button>
@@ -204,6 +224,8 @@
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="../../validation-bootstrap.js"></script>
 </body>
 </html>
 <?php
@@ -214,6 +236,6 @@
             header("Location: ../../index.php");
         }
     }else{
-        header("Location: ../../index.php");
+        header("Location: ../../login.php");
     }
 ?>

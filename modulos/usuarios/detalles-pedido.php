@@ -3,6 +3,8 @@
 
     // Verificar si el usuario ha iniciado sesión como admin
     if (isset($_SESSION['email'])) {
+        if(isset($_GET['id'])){
+            $id_pedido = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +33,6 @@
         <?php
             //Conexion a la base de datos
             require('../../includes/conexion.php');
-
-            $id_pedido = $_GET['id'];
 
             //Consulta para obtener los datos de las personas
             $query = "SELECT productos.nombre, productos.imagen, detalles.cantidad, detalles.total FROM detalles
@@ -97,6 +97,10 @@
 </body>
 </html>
 <?php 
+        }else{
+            header("Location: mis-pedidos.php");
+            exit();
+        }
     }else{
         // El usuario admin no ha iniciado sesión, redirigir a una página de inicio de sesión
         header("Location: /pagina-productos/login.php");

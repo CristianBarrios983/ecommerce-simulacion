@@ -3,6 +3,8 @@
 
     // Verificar si el usuario ha iniciado sesión como admin
     if (isset($_SESSION['admin'])) {
+        if(isset($_GET['id'])){
+            $id_pedido = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,6 +98,10 @@
 </body>
 </html>
 <?php 
+        }else{
+            header("Location: pedidos.php");
+            exit();
+        }
     }else{
         // El usuario admin no ha iniciado sesión, redirigir a una página de inicio de sesión
         header("Location: /pagina-productos/login-admin.php");

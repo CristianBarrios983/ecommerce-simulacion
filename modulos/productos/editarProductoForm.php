@@ -1,3 +1,13 @@
+<?php
+    // Inicia sesión para acceder a la variable $_SESSION
+    session_start();
+
+    // Verificar si el usuario ha iniciado sesión como admin
+    if (isset($_SESSION['admin'])) {
+
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,8 +24,6 @@
         <?php
             require("../../includes/conexion.php");
                 
-            $id = $_GET['id'];
-
             // Consulta para obtener los datos del registro a editar
             $query = "SELECT productos.id, productos.nombre, productos.descripcion, productos.precio, productos.imagen, productos.categoria AS id_cat, categorias.categoria
             FROM productos
@@ -29,12 +37,9 @@
                 $row = mysqli_fetch_assoc($result);
             
         ?>
-        <form action="actualizarProducto.php" method="post" class="border p-3 bg-white" style="width: 18rem;" enctype="multipart/form-data">
+        <form action="actualizarProducto.php" method="post" class="border p-3 bg-white needs-validation" style="width: 18rem;" enctype="multipart/form-data" novalidate>
             <h3>Actualizar producto</h3>
             <?php
-            // En el formulario de inicio de sesión (index.php)
-            session_start();
-
             // Verificar si hay un mensaje almacenado en la variable de sesión
             if (isset($_SESSION['mensaje'])) {
                 $mensaje = $_SESSION['mensaje'];
@@ -50,19 +55,28 @@
             <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
             <div class="mb-3">
                 <label for="nombre-producto" class="form-label">Nombre producto</label>
-                <input type="text" class="form-control" name="nombre-producto" aria-describedby="emailHelp" value="<?php echo $row['nombre'] ?>">
+                <input type="text" class="form-control" name="nombre-producto" value="<?php echo $row['nombre'] ?>" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripcion</label>
-                <input type="text" class="form-control" name="descripcion" aria-describedby="emailHelp" value="<?php echo $row['descripcion'] ?>">
+                <input type="text" class="form-control" name="descripcion" value="<?php echo $row['descripcion'] ?>" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <div class="mb-3">
                 <label for="precio" class="form-label">Precio $</label>
-                <input type="number" class="form-control" name="precio" aria-describedby="emailHelp" value="<?php echo $row['precio'] ?>">
+                <input type="number" class="form-control" name="precio" value="<?php echo $row['precio'] ?>" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <div class="mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
-                <input type="file" class="form-control" name="imagen" aria-describedby="emailHelp">
+                <input type="file" class="form-control" name="imagen">
             </div>
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoria</label>
@@ -98,5 +112,18 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../../validation-bootstrap.js"></script>
   </body>
 </html>
+<?php 
+        }else{
+            header("Location: /pagina-productos/panel-admin.php");
+            exit();
+        }
+
+    }else{
+        // El usuario admin no ha iniciado sesión, redirigir a una página de inicio de sesión
+        header("Location: /pagina-productos/login-admin.php");
+        exit();
+    }
+?>

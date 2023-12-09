@@ -57,9 +57,12 @@
                             <td><?php echo $mi_carrito[$i]['descripcion']; ?></td>
                             <td>$<?php echo $mi_carrito[$i]['precio']; ?></td>
                             <td>
-                                <form action="../carrito/editar-cantidad.php" method="post">
+                                <form class="needs-validation position-relative" action="../carrito/editar-cantidad.php" method="post" novalidate>
                                     <input type="hidden" name="id" value="<?php echo $i ?>">
-                                    <input type="number" id="cantidad" name="cantidad" value="<?php echo $mi_carrito[$i]['cantidad'] ?>" size="1" min="1">
+                                    <input type="number" id="cantidad" name="cantidad" value="<?php echo $mi_carrito[$i]['cantidad'] ?>" size="1" min="1" required>
+                                    <div class="invalid-tooltip rounded-0">
+                                        No puede estar vacio
+                                    </div>  
                                     <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-arrow-repeat"></i></button>
                                 </form>
                             </td>
@@ -112,5 +115,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="../../validation-bootstrap.js"></script>
 </body>
 </html>

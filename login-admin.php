@@ -11,7 +11,7 @@
   </head>
   <body class="bg-dark">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <form action="modulos/usuarios/acceder-admin.php" method="post" class="border p-3 bg-white" style="width: 18rem;">
+        <form action="modulos/usuarios/acceder-admin.php" method="post" class="border p-3 bg-white needs-validation" style="width: 18rem;" novalidate>
             <h2 class="text-center">Admin</h2>
             <?php
             // En el formulario de inicio de sesión (index.php)
@@ -31,14 +31,22 @@
             <?php endif; ?>
             <div class="mb-3">
                 <input type="email" class="form-control rounded-0" name="correo" aria-describedby="emailHelp" placeholder="Correo electronico" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <div class="mb-3">
                 <input type="password" class="form-control rounded-0" name="pass" placeholder="Contraseña" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <button type="submit" class="btn btn-primary d-block w-100 rounded-0">Acceder</button>
         </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="validation-bootstrap.js"></script>
   </body>
 </html>

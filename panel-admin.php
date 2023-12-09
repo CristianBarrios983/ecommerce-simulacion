@@ -136,7 +136,7 @@
                         ";
                         $result=mysqli_query($conn,$query);
 
-                        if($result){
+                        if(mysqli_num_rows($result) > 0){
                     ?>
 
                     <?php
@@ -157,6 +157,8 @@
                     <?php endwhile; ?>
 
                     <?php
+                        }else{
+                            echo '<td class="text-center" colspan="4">Aun no hay pedidos</td>';
                         }
                     ?>
                 </table>

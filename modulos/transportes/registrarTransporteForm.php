@@ -18,7 +18,7 @@
   </head>
   <body class="bg-secondary-subtle">
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <form action="registrarTransporte.php" method="post" class="border p-3 bg-white" style="width: 18rem;" enctype="multipart/form-data">
+        <form action="registrarTransporte.php" method="post" class="border p-3 bg-white needs-validation" style="width: 18rem;" enctype="multipart/form-data" novalidate>
             <h3>Registrar transporte</h3>
             <?php
             // Verificar si hay un mensaje almacenado en la variable de sesión
@@ -35,19 +35,31 @@
             <?php endif; ?>
             <div class="mb-3">
                 <label for="empresa" class="form-label">Empresa</label>
-                <input type="text" class="form-control" name="empresa" aria-describedby="emailHelp">
+                <input type="text" class="form-control" name="empresa" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <div class="mb-3">
                 <label for="tiempo-entrega" class="form-label">Tiempo entrega</label>
-                <input type="text" class="form-control" name="tiempo-entrega" aria-describedby="emailHelp">
+                <input type="text" class="form-control" name="tiempo-entrega" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <div class="mb-3">
                 <label for="precio-envio" class="form-label">Precio envio $</label>
-                <input type="number" class="form-control" name="precio-envio" aria-describedby="emailHelp">
+                <input type="number" class="form-control" name="precio-envio" required>
+                <div class="invalid-feedback">
+                    Campo obligatorio
+                </div>
             </div>
             <div class="mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
-                <input type="file" class="form-control" name="imagen" aria-describedby="emailHelp">
+                <input type="file" class="form-control" name="imagen" required>
+                <div class="invalid-feedback">
+                    Seleccione una imagen
+                </div>
             </div>
             <button type="submit" class="btn btn-primary d-block w-100 rounded-0">Registrar</button>
             <a href="index.php" class="btn btn-danger d-block w-100 rounded-0 mt-1">Volver</a>
@@ -55,6 +67,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="../../validation-bootstrap.js"></script>
   </body>
 </html>
 <?php 

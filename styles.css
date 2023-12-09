@@ -1,5 +1,40 @@
+/* Importando las fuentes de typografia */
+
+/* Roboto */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), url('https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu7GxKOzY.woff2') format('woff2');
+}
+  
+/* Rethink Sans */
+@font-face {
+    font-family: 'Rethink Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Rethink Sans'), url('https://fonts.gstatic.com/s/rethinksans/v12/FwZY7-Q5blnKtKXtoj9m6GQl_4kU.woff2') format('woff2');
+}
+  
+/* Afacad */
+@font-face {
+    font-family: 'Afacad';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Afacad'), url('https://fonts.gstatic.com/s/afacad/v9/HTx0L209KT-L1BbYAO5rETM0LJTkcQ.woff2') format('woff2');
+}
+  
+/* Open Sans */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), url('https://fonts.gstatic.com/s/opensans/v23/mem8YaGs126MiZpBA-UFVZ0e.ttf') format('truetype');
+}
+  
+
 body{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+    font-family: 'Roboto', 'Rethink Sans', 'Afacad', 'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;

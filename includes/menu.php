@@ -87,8 +87,11 @@
                 ?>
                 </li>
             </ul>
-            <form class="d-flex me-3" action="/pagina-productos/modulos/busqueda/busqueda-producto.php" method="get" role="search">
+            <form class="d-flex me-3 needs-validation position-relative" action="/pagina-productos/modulos/busqueda/busqueda-producto.php" method="get" role="search" novalidate>
                 <input class="form-control rounded-0" name="busqueda" id="busqueda" type="search" placeholder="Buscar..." aria-label="Search" required>
+                <div class="invalid-tooltip rounded-0">
+                    Campo vacio
+                </div>
                 <button class="btn btn-outline-success rounded-0" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
