@@ -3,7 +3,7 @@ session_start();
 
 if(isset($_SESSION['admin'])){
 
-    if(isset($_POST['id']) && isset($_POST['nombre-producto']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['categoria']) && isset($_FILES['imagen'])){
+    if(isset($_POST['id']) && isset($_POST['categoria'])){
 
         require('../../includes/conexion.php');
 
